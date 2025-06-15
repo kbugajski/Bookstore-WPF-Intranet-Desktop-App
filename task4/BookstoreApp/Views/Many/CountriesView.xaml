@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="BookstoreApp.Views.Many.CountriesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookstoreApp.Views.Many"
+             xmlns:Many="clr-namespace:BookstoreApp.ViewModels.Many"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <d:UserControl.DataContext>
+        <Many:CountriesViewModel/>
+    </d:UserControl.DataContext>
+        
+    <StackPanel>
+
+        <GroupBox Header="Filters"/>
+
+        <ToolBar>
+
+            <Button Margin="10 0" Content="Refresh" Command="{Binding RefreshCommand}"/>
+
+            <Button Margin="10 0" Content="Delete" Command="{Binding DeleteCommand}"/>
+
+            <Button Margin="10 0" Content="Add new"/>
+
+        </ToolBar>
+
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Models}" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectedItem="{Binding SelectedModel}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+
+                <DataGridTextColumn Header="Created at:" Binding="{Binding CreationDateTime}"/>
+
+                <DataGridTextColumn Header="Edited at:" Binding="{Binding EditDateTime}"/>
+
+                <DataGridTextColumn Header="Deleted at:" Binding="{Binding DeleteDateTime}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </StackPanel>
+</UserControl>

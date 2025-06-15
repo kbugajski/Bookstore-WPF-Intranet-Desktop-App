@@ -1,0 +1,192 @@
+﻿<UserControl x:Class="BookstoreApp.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookstoreApp.Views"
+             xmlns:vm="clr-namespace:BookstoreApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" Height="608">
+
+    <d:UserControl.DataContext>
+        <vm:DashboardViewModel/>
+    </d:UserControl.DataContext>
+
+
+    <Grid Background="#F4F4F4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Nagłówek -->
+        <TextBlock Text="Dashboard" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#333" Margin="5" />
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="10,0,0,0">
+            <Button Content="Refresh" Padding="25,2" Command="{Binding RefreshCommand}"/>
+        </StackPanel>
+        <!-- Statystyki -->
+        <StackPanel  Orientation="Vertical" Grid.Row="2" Margin="10">
+            <GroupBox Header="General Statistics">
+                <UniformGrid Columns="3" Rows="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+
+                    <!-- Liczba książek -->
+                    <Border Background="White" Padding="15" Width="250" Height="100" Margin="10" 
+    BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="📚" FontSize="30" Margin="5"/>
+                            <StackPanel>
+                                <TextBlock Text="Total Books" FontSize="14" Foreground="Gray"/>
+                                <TextBlock Text="{Binding TotalBooks}" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Liczba klientów -->
+                    <Border Background="White" Padding="15" Width="250" Height="100" Margin="10"
+    BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="👥" FontSize="30" Margin="5"/>
+                            <StackPanel>
+                                <TextBlock Text="Total Customers" FontSize="14" Foreground="Gray"/>
+                                <TextBlock Text="{Binding TotalCustomers}" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Liczba zamówień (faktur) -->
+                    <Border Background="White" Padding="15" Width="250" Height="100" Margin="10"
+    BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="📦" FontSize="30" Margin="5"/>
+                            <StackPanel>
+                                <TextBlock Text="Total Invoices" FontSize="14" Foreground="Gray"/>
+                                <TextBlock Text="{Binding TotalInvoices}" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Liczba autorów -->
+                    <Border Background="White" Padding="15" Width="250" Height="100" Margin="10"
+    BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="✍️" FontSize="30" Margin="5"/>
+                            <StackPanel>
+                                <TextBlock Text="Total Authors" FontSize="14" Foreground="Gray"/>
+                                <TextBlock Text="{Binding TotalAuthors}" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Liczba wydawnictw -->
+                    <Border Background="White" Padding="15" Width="250" Height="100" Margin="10"
+    BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="🏢" FontSize="30" Margin="5"/>
+                            <StackPanel>
+                                <TextBlock Text="Total Publishers" FontSize="14" Foreground="Gray"/>
+                                <TextBlock Text="{Binding TotalPublishers}" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Liczba recenzji -->
+                    <Border Background="White" Padding="15" Width="250" Height="100" Margin="10"
+    BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="📝" FontSize="30" Margin="5"/>
+                            <StackPanel>
+                                <TextBlock Text="Total Reviews" FontSize="14" Foreground="Gray"/>
+                                <TextBlock Text="{Binding TotalReviews}" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="White" Padding="15" Width="250" Height="100" Margin="10"
+                            BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="📂" FontSize="30" Margin="5"/>
+                            <StackPanel>
+                                <TextBlock Text="Total Categories" FontSize="14" Foreground="Gray"/>
+                                <TextBlock Text="{Binding TotalCategories}" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="White" Padding="15" Width="250" Height="100" Margin="10" 
+                            BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="📍" FontSize="30" Margin="5"/>
+                            <StackPanel>
+                                <TextBlock Text="Total Addresses" FontSize="14" Foreground="Gray"/>
+                                <TextBlock Text="{Binding TotalAddresses}" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <!-- Średnia ocena recenzji -->
+                    <Border Background="White" Padding="15" Width="250" Height="100" Margin="10"
+    BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="⭐" FontSize="30" Margin="5"/>
+                            <StackPanel>
+                                <TextBlock Text="Average Review Rating" FontSize="14" Foreground="Gray"/>
+                                <TextBlock Text="{Binding ReviewRatingAverage}" FontSize="20" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                </UniformGrid>
+            </GroupBox>
+            <GroupBox Header="Single Book Stats" Grid.Row="3" Margin="0,0,0,30">
+                <StackPanel Orientation="Vertical">
+                    <!-- Nagłówek sekcji -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Select Book" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#333" Margin="5" />
+                    </StackPanel>
+
+                    <!-- Przycisk wyboru książki + ID wybranej książki -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button MinWidth="100" MinHeight="20" Content="{Binding BookTitle}" Command="{Binding SelectBookCommand}"/>
+                    </StackPanel>
+
+                    <!-- Statystyki książki -->
+                    <StackPanel Orientation="Vertical" Margin="10" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin=" 19,0,0,0" Text="Authors:" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding SelectedBookTotalAuthors}" MinWidth="84" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Categories:" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding SelectedBookTotalCategories}" MinWidth="102" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Publishers:" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding SelectedBookTotalPublishers}" MinWidth="80" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Avg. Rating:" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding SelectedBookReviewRatingAverage}" MinWidth="59" HorizontalAlignment="Left"  Margin="5,0,0,0"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Highest Rating:" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding SelectedBookReviewRatingLargest}" MinWidth="80" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Lowest Rating:" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding SelectedBookReviewRatingSmallest}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+
+
+
+
+
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

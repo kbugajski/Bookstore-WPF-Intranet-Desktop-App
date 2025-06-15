@@ -1,0 +1,69 @@
+﻿<UserControl x:Name="Data" x:Class="BookstoreApp.Views.Many.InvoicesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookstoreApp.Views.Many"
+             xmlns:many="clr-namespace:BookstoreApp.ViewModels.Many" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <many:InvoicesViewModel/>
+    </UserControl.DataContext>
+
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}" x:Key="WrapText">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+
+        <GroupBox Header="Filters">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Margin="0,5">Is paid:</Label>
+                <CheckBox Margin="4,10" IsChecked="{Binding IsPaid}"/>
+                <Label Margin="20,5,0,0">Issued date from:</Label>
+                <DatePicker Margin="0,7,0,0" SelectedDate="{Binding DateOfIssueFrom}"/>
+                <Label Margin="3,5,0,0">to:</Label>
+                <DatePicker Margin="0,7,0,0" SelectedDate="{Binding DateOfIssueTo}"/>
+                <Button Margin="5,5" Padding="10,0" Content="Filter" Command="{Binding FilterCommand}"></Button>
+                <Button Margin="5,5" Padding="10,0" Content="Clear Filters" Command="{Binding ClearFiltersCommnad}"></Button>
+            </StackPanel>
+        </GroupBox>
+
+        <ToolBar>
+
+            <Button Margin="10 0" Content="Refresh" Command="{Binding RefreshCommand}"/>
+
+            <Button Margin="10 0" Content="Delete" Command="{Binding DeleteCommand}"/>
+
+            <Button Margin="10 0" Content="Add new" Command="{Binding CreateNewCommand}"/>
+
+        </ToolBar>
+
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Models}" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectedItem="{Binding SelectedModel}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+
+                <DataGridTextColumn Header="Customer" Binding="{Binding CustomerName}"/>
+
+                <DataGridTextColumn Header="Date of issue:" Binding="{Binding DateOfIssue}"/>
+
+                <DataGridTextColumn Header="Paid ?" Binding="{Binding IsPaid}"/>
+
+                <DataGridTextColumn Header="Payment Method" Binding="{Binding PaymentMethodName}"/>
+
+
+
+                <DataGridTextColumn Header="Payment date:" Binding="{Binding PaymentDate}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </StackPanel>
+</UserControl>

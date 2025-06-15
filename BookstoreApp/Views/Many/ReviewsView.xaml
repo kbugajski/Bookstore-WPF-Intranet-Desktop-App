@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="BookstoreApp.Views.Many.ReviewsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookstoreApp.Views.Many"
+             xmlns:many="clr-namespace:BookstoreApp.ViewModels.Many"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <many:ReviewsViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}" x:Key="WrapText">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+
+        <GroupBox Header="Filters">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Label Margin="0,7">Has a Review Text:</Label>
+                    <ComboBox ItemsSource="{Binding YesNoOptions}" MinWidth="60" Margin="010" SelectedValuePath="SelectedOption" DisplayMemberPath="OptionName" SelectedValue="{Binding HasReviewText}"/>
+                    <Label Margin="20,7,0,0">Rating</Label>
+                    <ComboBox ItemsSource="{Binding LargerSmallerOptions}" MinWidth="50" Margin="2,10,8,10" SelectedValue="{Binding SelectedLargerSmallerOption}"  SelectedValuePath="SelectedOption" DisplayMemberPath="OptionName"></ComboBox>
+                    <Slider Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" Value="{Binding Rating}" Width="100" TickPlacement="BottomRight" Margin="3,7,5,0"/>
+                    <TextBlock Text="{Binding Rating}" MinWidth="30" TextAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
+                    <Label Margin="15,5,1,5" VerticalAlignment="Center">Search by:</Label>
+                    <ComboBox Margin="10" MinWidth="80" ItemsSource="{Binding SearchComboBoxDto}" SelectedValuePath="PropertyTitle" DisplayMemberPath="DisplayName" SelectedValue="{Binding SearchProperty}"/>
+                    <TextBox Text="{Binding SearchInput}" Width="200" Margin="1,10"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Margin="0,0,13,0">Order by:</Label>
+                    <ComboBox MinWidth="80" ItemsSource="{Binding OrderByComboBoxDto}" SelectedValuePath="PropertyTitle" DisplayMemberPath="DisplayName" SelectedValue="{Binding OrderProperty}"></ComboBox>
+                    <CheckBox  Margin="20,5,0,0"  Content="Ascending" IsChecked="{Binding OrderAscending}"></CheckBox>
+                    <Button Margin="50,0,0,0" Padding="10,0" Content="Filter" Command="{Binding FilterCommand}"></Button>
+                    <Button Margin="10,0,0,0" Padding="10,0" Content="Clear Filters" Command="{Binding ClearFiltersCommand}"></Button>
+                </StackPanel>
+            </StackPanel>
+            
+        </GroupBox>
+
+        <ToolBar>
+
+            <Button Margin="10 0" Content="Refresh" Command="{Binding RefreshCommand}"/>
+
+            <Button Margin="10 0" Content="Edit" Command="{Binding EditCommand}"/>
+
+            <Button Margin="10 0" Content="Delete" Command="{Binding DeleteCommand}"/>
+
+            <Button Margin="10 0" Content="Add new" Command="{Binding CreateNewCommand}"/>
+
+        </ToolBar>
+
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Models}" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectedItem="{Binding SelectedModel}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+
+                <DataGridTextColumn Header="Book" Binding="{Binding BookName}"/>
+
+                <DataGridTextColumn Header="Review author" Binding="{Binding CustomerName}"/>
+
+                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
+
+                <DataGridTextColumn Header="Reivew Date:" Binding="{Binding ReviewDate}"/>
+
+                <DataGridTextColumn Header="Review Text" Binding="{Binding ReviewText}" ElementStyle="{StaticResource WrapText}" Width="250"/>
+                
+                
+
+
+
+                
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </StackPanel>
+</UserControl>
